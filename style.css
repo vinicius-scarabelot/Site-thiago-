@@ -86,22 +86,27 @@ html, body {
   transition: opacity .6s ease;
 }
 /* Com o mouse em cima (ou a classe .ativo no toque): some o verde e aparece o jaleco */
-.cut:hover .verde,  .cut.ativo .verde  { opacity: 0; }
-.cut:hover .jaleco, .cut.ativo .jaleco { opacity: 1; }
+.cut.ativo .verde { opacity: 0; }
+.cut.ativo .jaleco { opacity: 1; }
+/* hover só em aparelhos com mouse; no toque o celular "gruda" o hover e impede de voltar */
+@media (hover: hover) {
+  .cut:hover .verde { opacity: 0; }
+  .cut:hover .jaleco { opacity: 1; }
+}
 
 /* Frase manuscrita embaixo do nome */
 .script {
   position: absolute;
-  left: 6vw;
-  bottom: 16vh;
+  left: 50%;                                   /* centralizada, embaixo do nome */
+  top: calc(8vh + 0.14 * min(44vw, 560px) + 10px);  /* logo abaixo do nome */
   margin: 0;
   z-index: 3;
   font-family: "Caveat Brush", cursive;
   font-size: clamp(34px, 4.6vw, 60px);   /* tamanho que cresce com a tela, com limites */
   line-height: 1;
   color: #fff;
-  transform: rotate(-8deg);              /* levemente inclinada */
-  transform-origin: 0 50%;
+  transform: translateX(-50%) rotate(-4deg);   /* centraliza e inclina um pouco */
+  transform-origin: 50% 50%;
   text-shadow: 0 2px 14px rgba(0,0,0,.18);
   transition: opacity .6s;
 }
