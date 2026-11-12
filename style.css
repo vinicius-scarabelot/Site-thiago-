@@ -1,53 +1,88 @@
+
 /* =====================================================================
-   style.css — aparência do site
-   Ordem: 1) cores  2) base  3) palco e figura  4) textos
-          5) cartão  6) painéis  7) barra de navegação  8) celular
+   STYLE.CSS — SITE THIAGO MACHADO
+   1) Cores
+   2) Base
+   3) Nome e figura
+   4) Textos
+   5) Cartão
+   6) Painéis
+   7) Navegação
+   8) Responsividade
    ===================================================================== */
 
-/* 1) CORES E FONTE
-   Mude as cores aqui e o site inteiro muda junto. */
+
+/* 1) CORES */
+
 :root {
-  --ink: #0d0f0e;          /* texto escuro */
-  --mint: #cfeee0;         /* verde clarinho (destaques) */
-  --g9: #0b2f20;           /* verde escuro do fundo */
-  --green-dark: #11402c;   /* verde dos botões e títulos pequenos */
-  --accent: #2f6f5e;       /* verde médio */
+  --ink: #0d0f0e;
+  --mint: #cfeee0;
+  --g9: #0b2f20;
+  --green-dark: #11402c;
+  --accent: #2f6f5e;
+
   color-scheme: dark;
 }
 
-/* 2) BASE
-   overflow: hidden faz a página NÃO rolar. Quem muda de tela é o JavaScript. */
-html, body {
+
+/* 2) BASE */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
   height: 100%;
   margin: 0;
   overflow: hidden;
+
   background: var(--g9);
-  font-family: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  font-family: "Inter Tight", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Palco: ocupa a tela inteira. Tudo que aparece fica dentro dele. */
 .stage {
   position: fixed;
   inset: 0;
+
+  width: 100%;
   height: 100vh;
-  height: 100dvh;   /* dvh = altura visível, sem a barra do navegador */
-  background: linear-gradient(180deg, #0c3523 0%, #14503a 45%, #9fd8bf 100%);
+  height: 100dvh;
+
+  background: linear-gradient(
+    180deg,
+    #0c3523 0%,
+    #14503a 45%,
+    #9fd8bf 100%
+  );
+
   overflow: hidden;
 }
 
-/* 3) NOME GRANDE ATRÁS DA FIGURA */
+
+/* 3) NOME DE FUNDO */
+
 .wm {
   position: absolute;
-  left: 50%;                    /* começa no meio da tela... */
-  top: 8vh;                     /* 8% da altura, a partir do topo */
-  transform: translateX(-50%);  /* ...e volta metade da largura: fica centralizado */
-  width: min(44vw, 560px);      /* 44% da tela, mas nunca mais que 560px */
+
+  left: 50%;
+  top: 8vh;
+
+  transform: translateX(-50%);
+
+  width: min(44vw, 560px);
   height: auto;
-  z-index: 1;                   /* fica atrás da figura (z-index 2) */
-  transition: transform 1s cubic-bezier(.2,.8,.2,1), opacity .6s;
+
+  z-index: 1;
+
+  transition:
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    opacity .6s;
 }
-/* O texto dentro do SVG */
+
 .wm text {
   font-family: "Inter Tight", sans-serif;
   font-weight: 900;
@@ -55,340 +90,853 @@ html, body {
   letter-spacing: -4px;
 }
 
-/* 4) A FIGURA (foto recortada) */
+
+/* 4) FIGURA */
+
 .cut {
   position: absolute;
+
   left: 50%;
-  bottom: 0;                    /* encostada na parte de baixo da tela */
-  height: min(72vh, 105vw);     /* altura: 72% da tela (ou 105% da largura) */
-  transform: translateX(-50%);  /* centraliza */
+  bottom: 0;
+
+  height: min(72vh, 105vw);
+
+  margin: 0;
+
+  transform: translateX(-50%);
+
   z-index: 2;
-  pointer-events: auto;         /* aceita mouse e toque */
-  transition: transform 1s cubic-bezier(.2,.8,.2,1), opacity .6s;
+  pointer-events: auto;
+
+  transition:
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    opacity .6s;
 }
+
 .cut img {
   display: block;
-  height: 100%;                 /* a imagem ocupa a altura da figura */
-  width: auto;                  /* largura segue a proporção da foto */
+
+  height: 100%;
+  width: auto;
 }
+
 .cut .verde {
   transition: opacity .6s ease;
 }
-/* A foto de jaleco fica por cima da verde, escondida no começo */
+
 .cut .jaleco {
   position: absolute;
+
   left: 50%;
   bottom: 0;
+
   height: 100%;
   width: auto;
+
   transform: translateX(-50%);
+
   opacity: 0;
+
   transition: opacity .6s ease;
 }
-/* Com o mouse em cima (ou a classe .ativo no toque): some o verde e aparece o jaleco */
-.cut:hover .verde,  .cut.ativo .verde  { opacity: 0; }
-.cut:hover .jaleco, .cut.ativo .jaleco { opacity: 1; }
 
-/* Frase manuscrita embaixo do nome */
+.cut:hover .verde,
+.cut.ativo .verde {
+  opacity: 0;
+}
+
+.cut:hover .jaleco,
+.cut.ativo .jaleco {
+  opacity: 1;
+}
+
+
+/* 5) FRASE MANUSCRITA */
+
 .script {
   position: absolute;
+
   left: 6vw;
   bottom: 16vh;
+
   margin: 0;
+
   z-index: 3;
+
   font-family: "Caveat Brush", cursive;
-  font-size: clamp(34px, 4.6vw, 60px);   /* tamanho que cresce com a tela, com limites */
+  font-size: clamp(34px, 4.6vw, 60px);
   line-height: 1;
+
   color: #fff;
-  transform: rotate(-8deg);              /* levemente inclinada */
+
+  transform: rotate(-8deg);
   transform-origin: 0 50%;
+
   text-shadow: 0 2px 14px rgba(0,0,0,.18);
+
   transition: opacity .6s;
 }
 
-/* 5) CARTÃO DE DADOS (computador: branco) */
+
+/* 6) CARTÃO PROFISSIONAL */
+
 .cartao {
   position: absolute;
+
   right: 6vw;
   bottom: 12vh;
+
   width: min(250px, 60vw);
+
   z-index: 3;
+
   background: #141615;
   color: #fff;
+
   border-radius: 14px;
+
   padding: 32px 28px;
+
   box-shadow: 0 24px 50px rgba(0,0,0,.28);
+
   transform: none;
+
   transition: opacity .6s;
 }
-/* Bolinha de furo no topo do cartão (só aparece no celular) */
+
 .cartao::before {
   content: "";
+
   display: block;
+
   position: absolute;
+
   top: 12px;
   left: 50%;
+
   width: 22px;
   height: 22px;
+
   margin-left: -11px;
+
   border-radius: 50%;
+
   background: #0b2f20;
+
   box-shadow: inset 0 2px 3px rgba(0,0,0,.5);
 }
-.cartao .rot {                 /* "PROFISSIONAL" */
+
+.cartao .rot {
   margin: 0;
+
   font-size: 11px;
   font-weight: 700;
+
   letter-spacing: .14em;
   text-transform: uppercase;
+
   color: var(--mint);
 }
-.cartao h4 {                   /* nome */
+
+.cartao h4 {
   margin: 8px 0 0;
+
   font-size: 26px;
   line-height: .98;
   font-weight: 800;
+
   letter-spacing: -.5px;
+
   color: #fff;
 }
-.cartao .lin {                 /* uma linha: rótulo à esquerda, valor à direita */
+
+.cartao .lin {
   display: flex;
+
   justify-content: space-between;
   gap: 8px;
+
   font-size: 13px;
   font-weight: 700;
+
   padding: 6px 0 4px;
   margin-top: 10px;
+
   border-bottom: 1.5px dotted #333;
+
   letter-spacing: .04em;
 }
-.cartao .lin span { color: #c9d1cc; }
-.cartao .lin b { font-weight: 600; text-align: right; color: #fff; }
 
-/* 6) PAINÉIS (telas de procedimentos e contato)
-   Começam invisíveis. O JS põe data-view na <body> e a regra abaixo mostra o painel. */
+.cartao .lin span {
+  color: #c9d1cc;
+}
+
+.cartao .lin b {
+  font-weight: 600;
+  text-align: right;
+  color: #fff;
+}
+
+
+/* 7) PAINÉIS */
+
 .painel {
   position: absolute;
   inset: 0;
+
   z-index: 5;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 0 6vw;
-  box-sizing: border-box;
+
   opacity: 0;
-  transform: translateY(40px);   /* começa um pouco abaixo */
-  pointer-events: none;          /* invisível não recebe clique */
-  transition: opacity .6s, transform .8s cubic-bezier(.2,.8,.2,1);
+
+  transform: translateY(40px);
+
+  pointer-events: none;
+
+  transition:
+    opacity .6s,
+    transform .8s cubic-bezier(.2,.8,.2,1);
 }
-/* A caixa branca dentro do painel */
+
 .folha {
   background: #fff;
   color: var(--ink);
+
   border-radius: 3px;
+
   padding: 40px;
+
   width: min(520px, 88vw);
   max-width: 88vw;
+
   box-sizing: border-box;
+
   box-shadow: 0 24px 50px rgba(0,0,0,.28);
 }
-.folha .num {                  /* "01 / 07" ou "CONTATO" */
+
+.folha .num {
   margin: 0;
+
   font-size: 12px;
   font-weight: 700;
+
   letter-spacing: .16em;
+
   color: #5a625d;
 }
+
 .folha h2 {
   margin: 12px 0 10px;
+
   font-family: Anton, Impact, sans-serif;
+
   font-weight: 400;
   font-size: 56px;
   line-height: 1;
+
   text-transform: uppercase;
 }
-.folha p { margin: 0; font-size: 18px; line-height: 1.4; color: #2c332f; }
-.folha .linha { margin-top: 8px; }
-.folha .tel { color: var(--green-dark); font-weight: 600; text-decoration: none; }
-.icone {                       /* círculo com o desenho do procedimento */
-  width: 84px;
-  height: 84px;
+
+.folha p {
+  margin: 0;
+
+  font-size: 18px;
+  line-height: 1.4;
+
+  color: #2c332f;
+}
+
+.folha .linha {
+  margin-top: 8px;
+}
+
+.folha .tel {
   color: var(--green-dark);
-  margin-bottom: 20px;
-}
-.icone svg { width: 100%; height: 100%; display: block; }
-.setas { display: flex; justify-content: space-between; margin-top: 28px; }
-.seta {                        /* botões redondos de voltar e avançar */
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1.6px solid var(--ink);
-  background: transparent;
-  color: var(--ink);
-  font-size: 22px;
-  cursor: pointer;
-  transition: background .25s, transform .25s;
-}
-.seta:hover { background: var(--mint); transform: scale(1.08); }
-.botoes { margin-top: 24px; }
-.link-btn {                    /* botões de contato */
-  display: inline-block;
-  margin: 0 8px 8px 0;
-  background: var(--green-dark);
-  color: #fff;
-  padding: 14px 22px;
-  border-radius: 999px;
   font-weight: 600;
-  font-size: 16px;
   text-decoration: none;
 }
-.link-btn.alt { background: var(--accent); }
 
-/* Troca de tela: o JS põe data-view="servicos" ou "contato" na <body>.
-   Aqui o painel aparece e o nome e a figura saem de cena. */
+
+/* ÍCONES */
+
+.icone {
+  width: 84px;
+  height: 84px;
+
+  color: var(--green-dark);
+
+  margin-bottom: 20px;
+}
+
+.icone svg {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+}
+
+
+/* SETAS */
+
+.setas {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 28px;
+}
+
+.seta {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 50%;
+
+  border: 1.6px solid var(--ink);
+
+  background: transparent;
+  color: var(--ink);
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  transition:
+    background .25s,
+    transform .25s;
+}
+
+.seta:hover {
+  background: var(--mint);
+  transform: scale(1.08);
+}
+
+
+/* BOTÕES DE CONTATO */
+
+.botoes {
+  margin-top: 24px;
+}
+
+.link-btn {
+  display: inline-block;
+
+  margin: 0 8px 8px 0;
+
+  background: var(--green-dark);
+  color: #fff;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  font-weight: 600;
+  font-size: 16px;
+
+  text-decoration: none;
+
+  transition: background .25s, transform .25s;
+}
+
+.link-btn:hover {
+  transform: translateY(-2px);
+}
+
+.link-btn.alt {
+  background: var(--accent);
+}
+
+
+/* ANIMAÇÃO DE TROCA DE TELAS */
+
 body[data-view="servicos"] .painel.servicos,
 body[data-view="contato"] .painel.contato {
   opacity: 1;
+
   transform: none;
+
   pointer-events: auto;
 }
+
 body[data-view="servicos"] .wm,
 body[data-view="contato"] .wm {
-  transform: translate(-50%, -30vh);   /* sobe o nome para fora */
+  transform: translate(-50%, -30vh);
   opacity: .2;
 }
+
 body[data-view="servicos"] .cut,
 body[data-view="contato"] .cut {
-  transform: translateX(calc(-50% - 36vw)) scale(.72);  /* empurra a figura para a esquerda */
+  transform: translateX(calc(-50% - 36vw)) scale(.72);
   opacity: .45;
 }
+
 body[data-view="servicos"] .script,
 body[data-view="contato"] .script,
 body[data-view="servicos"] .cartao,
 body[data-view="contato"] .cartao {
-  opacity: 0;                          /* esconde a frase e o cartão */
+  opacity: 0;
 }
 
-/* 7) BARRA DE NAVEGAÇÃO */
+
+/* 8) NAVEGAÇÃO */
+
 .ui {
   position: fixed;
   inset: 0;
-  pointer-events: none;   /* a camada toda não bloqueia cliques... */
+
+  pointer-events: none;
+
   z-index: 20;
 }
-/* ...só os botões voltam a aceitar clique (pointer-events: auto) */
-.barra { display: contents; }  /* no computador, os botões ficam soltos, cada um na sua posição */
+
+.barra {
+  display: contents;
+}
+
 .tag {
   position: absolute;
+
   top: 24px;
+
   pointer-events: auto;
+
   border: 0;
+
   background: #fff;
   color: var(--ink);
+
   font: 650 16px "Inter Tight", sans-serif;
+
   height: 37px;
+
   padding: 0 18px;
+
   display: inline-flex;
   align-items: center;
+
   text-decoration: none;
   white-space: nowrap;
+
   cursor: pointer;
-  box-shadow: 0 3px 0 rgba(0,0,0,.18), 0 6px 14px rgba(0,0,0,.18);  /* sombra "de caixa" */
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+
+  box-shadow:
+    0 3px 0 rgba(0,0,0,.18),
+    0 6px 14px rgba(0,0,0,.18);
+
+  transition:
+    transform .25s cubic-bezier(.2,.8,.2,1),
+    box-shadow .25s;
 }
-.tag:hover { transform: translateY(-2px) rotate(-1.5deg); }   /* levanta um pouco */
-.tag:active { transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.18); }
-.tag svg { display: none; }     /* ícones só aparecem no celular */
-.t1 { left: 24px; }
-.t2 { left: 180px; }
-.t3 { right: 150px; }
-.t4 { right: 24px; }
+
+.tag:hover {
+  transform: translateY(-2px) rotate(-1.5deg);
+}
+
+.tag:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(0,0,0,.18);
+}
+
+.tag svg {
+  display: none;
+}
+
+.t1 {
+  left: 24px;
+}
+
+.t2 {
+  left: 180px;
+}
+
+.t3 {
+  right: 150px;
+}
+
+.t4 {
+  right: 24px;
+}
+
 .rodape {
   position: absolute;
+
   left: 24px;
   bottom: 18px;
+
   margin: 0;
+
   font-size: 12px;
+
   color: rgba(255,255,255,.8);
 }
 
-/* 8) CELULAR (telas com até 760px de largura)
-   Tudo que está aqui sobrescreve as regras de cima, só no celular. */
+
+/* =====================================================================
+   9) CELULARES
+   ===================================================================== */
+
 @media (max-width: 760px) {
 
-  /* Barra: vira um bloco com 4 ícones, no topo e centralizada */
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+  }
+
+  .stage {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+
+    overflow: hidden;
+  }
+
+
+  /* MENU SUPERIOR */
+
   .barra {
     position: absolute;
-    top: 24px;
-    bottom: auto;
-    right: auto;
+
+    top: calc(14px + env(safe-area-inset-top, 0px));
+
     left: 50%;
+    right: auto;
+
     transform: translateX(-50%);
+
     display: flex;
-    gap: 6px;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    width: max-content;
+    max-width: calc(100vw - 24px);
+
     padding: 6px;
+
     background: rgba(255,255,255,.96);
+
     border-radius: 999px;
+
     box-shadow: 0 6px 18px rgba(0,0,0,.2);
+
     pointer-events: auto;
   }
+
   .barra .tag {
-    position: static;           /* deixa de usar top/left: fica no fluxo da barra */
+    position: static;
+
+    flex: 0 0 44px;
+
     width: 44px;
     height: 40px;
+
     padding: 0;
+
+    display: flex;
+
+    align-items: center;
     justify-content: center;
+
     border-radius: 999px;
+
     background: transparent;
+
     box-shadow: none;
   }
-  .barra .tag:hover { transform: none; }
-  .barra .tag span { display: none; }                /* esconde o texto */
-  .barra .tag svg { display: block; width: 22px; height: 22px; }  /* mostra o ícone */
-  .rodape { display: none; }
 
-  /* Nome e frase: sobem para o topo */
-  .wm { top: 80px; width: 72vw; }
-  .script {
-    top: 124px;
-    bottom: auto;
-    left: 50%;
-    transform: translateX(-50%) rotate(-4deg);
-    transform-origin: 50% 50%;
-    font-size: 32px;
-    white-space: nowrap;
+  .barra .tag:hover {
+    transform: none;
   }
 
-  /* Figura: sobe e fica atrás do cartão */
-  .cut { height: min(62vh, 110vw); bottom: 120px; }
+  .barra .tag span {
+    display: none;
+  }
+
+  .barra .tag svg {
+    display: block;
+
+    width: 22px;
+    height: 22px;
+  }
+
+  .rodape {
+    display: none;
+  }
+
+
+  /* NOME DE FUNDO */
+
+  .wm {
+    top: 85px;
+
+    left: 50%;
+
+    width: 90vw;
+    max-width: 560px;
+
+    height: auto;
+
+    transform: translateX(-50%);
+  }
+
+  .wm text {
+    font-size: 150px;
+    letter-spacing: -4px;
+  }
+
+
+  /* FRASE */
+
+  .script {
+    top: 130px;
+    bottom: auto;
+
+    left: 50%;
+
+    transform: translateX(-50%) rotate(-4deg);
+
+    transform-origin: center;
+
+    font-size: clamp(25px, 7vw, 32px);
+
+    white-space: nowrap;
+
+    text-align: center;
+  }
+
+
+  /* FOTO PRINCIPAL */
+
+  .cut {
+    left: 50%;
+
+    bottom: 180px;
+
+    height: min(52vh, 105vw);
+    max-height: 430px;
+
+    width: auto;
+
+    margin: 0;
+
+    transform: translateX(-50%);
+  }
+
+  .cut img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+  }
+
+  .cut .jaleco {
+    height: 100%;
+  }
+
+
+  /* FOTO NAS OUTRAS TELAS */
+
   body[data-view="servicos"] .cut,
   body[data-view="contato"] .cut {
     transform: translateX(calc(-50% - 60vw)) scale(.6);
   }
 
-  /* Cartão: preto, centralizado, não encosta nas bordas */
+
+  /* CARTÃO PROFISSIONAL */
+
   .cartao {
+    position: absolute;
+
+    left: 50%;
+    right: auto;
+
+    top: auto;
+
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+
+    transform: translateX(-50%);
+
+    width: min(88vw, 320px);
+
+    padding: 32px 18px 18px;
+
     background: #141615;
     color: #fff;
-    border-radius: 14px;
-    padding: 32px 20px 20px;
-    box-shadow: 0 18px 40px rgba(0,0,0,.28);
-    top: auto;
-    bottom: calc(8px + env(safe-area-inset-bottom, 0px));
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(84vw, 320px);
-  }
-  .cartao::before { display: block; }
-  .cartao .rot { color: var(--mint); }
-  .cartao h4 { color: #fff; }
-  .cartao .lin { border-bottom: 1.5px dotted #333; font-size: 12px; }
-  .cartao .lin span { color: #c9d1cc; }
-  .cartao .lin b { color: #fff; }
 
-  /* Painéis: textos um pouco menores */
-  .folha { padding: 28px; }
-  /* título do procedimento: 9% da largura da tela, para caber na caixa */
-  .folha h2 { font-size: 9vw; }
+    border-radius: 14px;
+
+    box-shadow: 0 18px 40px rgba(0,0,0,.28);
+  }
+
+  .cartao::before {
+    display: block;
+  }
+
+  .cartao .rot {
+    color: var(--mint);
+  }
+
+  .cartao h4 {
+    color: #fff;
+    font-size: 25px;
+  }
+
+  .cartao .lin {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    font-size: 12px;
+
+    padding: 7px 0 5px;
+
+    border-bottom: 1.5px dotted #333;
+  }
+
+  .cartao .lin span {
+    color: #c9d1cc;
+    flex-shrink: 0;
+  }
+
+  .cartao .lin b {
+    color: #fff;
+
+    text-align: right;
+
+    overflow-wrap: anywhere;
+  }
+
+
+  /* PAINÉIS DE PROCEDIMENTOS E CONTATO */
+
+  .painel {
+    padding:
+      calc(76px + env(safe-area-inset-top, 0px))
+      16px
+      calc(20px + env(safe-area-inset-bottom, 0px));
+
+    align-items: center;
+    justify-content: center;
+  }
+
+  .folha {
+    width: 100%;
+    max-width: 480px;
+
+    max-height: calc(100dvh - 112px);
+
+    padding: clamp(20px, 6vw, 28px);
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .folha h2 {
+    font-size: clamp(30px, 9vw, 46px);
+
+    line-height: 1.05;
+
+    overflow-wrap: anywhere;
+  }
+
+  .folha p {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+
+  /* ÍCONES DOS PROCEDIMENTOS */
+
+  .icone {
+    width: 68px;
+    height: 68px;
+
+    margin-bottom: 16px;
+  }
+
+
+  /* SETAS */
+
+  .setas {
+    margin-top: 22px;
+  }
+
+
+  /* CONTATO */
+
+  .botoes {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 20px;
+  }
+
+  .link-btn {
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 13px 16px;
+
+    text-align: center;
+
+    font-size: 15px;
+  }
+
+  .linha {
+    overflow-wrap: anywhere;
+  }
+
+}
+
+
+/* CELULARES MUITO ESTREITOS */
+
+@media (max-width: 360px) {
+
+  .barra {
+    gap: 2px;
+    padding: 5px;
+  }
+
+  .barra .tag {
+    flex-basis: 40px;
+    width: 40px;
+    height: 38px;
+  }
+
+  .cartao {
+    width: 90vw;
+    padding: 30px 15px 15px;
+  }
+
+  .cartao h4 {
+    font-size: 23px;
+  }
+
+  .cartao .lin {
+    font-size: 11px;
+  }
+
+  .script {
+    font-size: 25px;
+  }
+
 }
