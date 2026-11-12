@@ -1,116 +1,260 @@
+
 <!doctype html>
-<!-- Esta é a estrutura da página: o que existe e em que ordem. -->
 <html lang="pt-BR">
+
 <head>
-  <!-- Acentos (ç, é, ã) aparecem certos por causa disso -->
   <meta charset="utf-8">
-  <!-- Faz o site caber na largura do celular em vez de encolher -->
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
   <title>Thiago Machado | Biomédico esteta</title>
 
-  <!-- Fontes do Google (precisa de internet): Inter Tight, Caveat Brush e Anton -->
+  <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100..900&family=Caveat+Brush&family=Anton&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100..900&family=Caveat+Brush&family=Anton&display=swap"
+    rel="stylesheet">
 
-  <!-- Liga o arquivo de estilo -->
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="stage">
+  <main class="stage">
 
-  <!-- Nome grande. É um SVG para o texto esticar sem perder qualidade -->
-  <svg class="wm" viewBox="0 0 1440 200" aria-hidden="true">
-    <defs>
-      <!-- Degradê: branco no topo, sumindo levemente embaixo -->
-      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#ffffff"/>
-        <stop offset=".5" stop-color="#f1f5f3" stop-opacity=".9"/>
-        <stop offset="1" stop-color="#d7e6de" stop-opacity=".28"/>
-      </linearGradient>
-    </defs>
-    <text x="720" y="160" text-anchor="middle" fill="url(#g)">THIAGO MACHADO</text>
-  </svg>
+    <!-- Nome de fundo -->
+    <svg class="wm" viewBox="0 0 1440 200" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff" />
+          <stop offset=".5" stop-color="#f1f5f3" stop-opacity=".9" />
+          <stop offset="1" stop-color="#d7e6de" stop-opacity=".28" />
+        </linearGradient>
+      </defs>
 
-  <!-- Figura: duas fotos empilhadas. A verde aparece; a jaleco aparece no hover (ou no toque) -->
-  <div class="cut" id="figura">
-    <img class="verde" src="assets/verde.webp" alt="Thiago Machado de uniforme verde">
-    <img class="jaleco" src="assets/jaleco.webp" alt="Thiago Machado de jaleco branco">
-  </div>
+      <text x="720" y="160" text-anchor="middle" fill="url(#g)">
+        THIAGO MACHADO
+      </text>
+    </svg>
 
-  <!-- Frase manuscrita -->
-  <p class="script">biomedicina estética</p>
+    <!-- Fotos -->
+    <figure class="cut" id="figura">
+      <img class="verde" src="assets/verde.webp"
+        alt="Thiago Machado de uniforme verde">
 
-  <!-- Cartão com os dados profissionais -->
-  <div class="cartao">
-    <p class="rot">Profissional</p>
-    <h4>Thiago Machado</h4>
-    <div class="lin"><span>ÁREA</span><b>Biomédico esteta</b></div>
-    <div class="lin"><span>REGISTRO</span><b>CRBM 15786</b></div>
-    <div class="lin"><span>INSTAGRAM</span><b>@dr.thiagomachadosc</b></div>
-    <div class="lin"><span>TELEFONE</span><b>+55 48 8846-8136</b></div>
-  </div>
+      <img class="jaleco" src="assets/jaleco.webp"
+        alt="Thiago Machado de jaleco branco">
+    </figure>
 
-  <!-- Tela 2: procedimentos. Começa escondida; o JS a mostra -->
-  <section class="painel servicos">
-    <div class="folha">
-      <!-- O JS coloca aqui o desenho circular de cada procedimento -->
-      <div class="icone" id="icone"></div>
-      <p class="num" id="num">01 / 07</p>
-      <h2 id="titulo">PEIM</h2>
-      <p id="texto"></p>
-      <div class="setas">
-        <button class="seta" id="ant" aria-label="Procedimento anterior">&larr;</button>
-        <button class="seta" id="prox" aria-label="Próximo procedimento">&rarr;</button>
-      </div>
-    </div>
-  </section>
+    <!-- Frase -->
+    <p class="script">biomedicina estética</p>
 
-  <!-- Tela 3: contato -->
-  <section class="painel contato">
-    <div class="folha">
-      <p class="num">CONTATO</p>
-      <h2>Converse comigo</h2>
-      <p>Estética facial • Rejuvenescimento</p>
-      <p class="linha">Realce sua beleza com naturalidade.</p>
-      <p class="linha">📍 Criciúma - SC</p>
-      <p class="linha">Seg. a sex. 09:00–18:00 · Sáb. 09:00–17:00 · Dom. fechado</p>
-      <p class="linha"><a class="tel" href="tel:+554888468136">+55 48 8846-8136</a></p>
-      <div class="botoes">
-        <a class="link-btn alt" href="https://wa.me/554888468136" target="_blank" rel="noopener">Chamar no WhatsApp</a>
-        <a class="link-btn" href="https://www.instagram.com/dr.thiagomachadosc/" target="_blank" rel="noopener">Instagram profissional</a>
-      </div>
-    </div>
-  </section>
+    <!-- Cartão profissional -->
+    <article class="cartao">
 
-</div>
+      <p class="rot">Profissional</p>
 
-<!-- Barra de navegação. No computador são caixas com texto; no celular viram ícones -->
-<nav class="ui">
-  <div class="barra">
-    <!-- data-go="..." diz para o JS qual tela abrir ao clicar -->
-    <button class="tag t1" data-go="hero" aria-label="início">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11 L12 4 L20 11 V20 H14 V14 H10 V20 H4 Z"/></svg>
-      <span>início</span>
-    </button>
-    <button class="tag t2" data-go="servicos" aria-label="procedimentos">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
-      <span>procedimentos</span>
-    </button>
-    <button class="tag t3" data-go="contato" aria-label="contato">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>
-      <span>contato</span>
-    </button>
-    <!-- Link externo: abre o Instagram em outra aba -->
-    <a class="tag t4" href="https://www.instagram.com/dr.thiagomachadosc/" target="_blank" rel="noopener" aria-label="instagram">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r=".6"/></svg>
-      <span>instagram</span>
-    </a>
-  </div>
-  <p class="rodape">Biomédico Esteta · CRBM 15786 · Criciúma - SC</p>
-</nav>
+      <h4>Thiago Machado</h4>
 
-<!-- O JavaScript fica no fim: quando ele roda, todos os elementos já existem -->
-<script src="script.js"></script>
+      <p class="lin">
+        <span>ÁREA</span>
+        <b>Biomédico esteta</b>
+      </p>
+
+      <p class="lin">
+        <span>REGISTRO</span>
+        <b>CRBM 15786</b>
+      </p>
+
+      <p class="lin">
+        <span>INSTAGRAM</span>
+        <b>@dr.thiagomachadosc</b>
+      </p>
+
+      <p class="lin">
+        <span>TELEFONE</span>
+        <b>+55 48 8846-8136</b>
+      </p>
+
+    </article>
+
+    <!-- Tela 2: Procedimentos -->
+    <section class="painel servicos">
+
+      <article class="folha">
+
+        <section class="icone" id="icone"></section>
+
+        <p class="num" id="num">01 / 07</p>
+
+        <h2 id="titulo">PEIM</h2>
+
+        <p id="texto"></p>
+
+        <nav class="setas">
+
+          <button class="seta" id="ant"
+            aria-label="Procedimento anterior">
+            &larr;
+          </button>
+
+          <button class="seta" id="prox"
+            aria-label="Próximo procedimento">
+            &rarr;
+          </button>
+
+        </nav>
+
+      </article>
+
+    </section>
+
+    <!-- Tela 3: Contato -->
+    <section class="painel contato">
+
+      <article class="folha">
+
+        <p class="num">CONTATO</p>
+
+        <h2>Converse comigo</h2>
+
+        <p>Estética facial • Rejuvenescimento</p>
+
+        <p class="linha">
+          Realce sua beleza com naturalidade.
+        </p>
+
+        <p class="linha">
+          📍 Criciúma - SC
+        </p>
+
+        <p class="linha">
+          Seg. a sex. 09:00–18:00 ·
+          Sáb. 09:00–17:00 ·
+          Dom. fechado
+        </p>
+
+        <p class="linha">
+          <a class="tel" href="tel:+554888468136">
+            +55 48 8846-8136
+          </a>
+        </p>
+
+        <!-- Botões de contato -->
+        <section class="botoes">
+
+          <!-- WhatsApp com mensagem automática -->
+          <a class="link-btn alt"
+            href="https://wa.me/554888468136?text=Ol%C3%A1%21%20Encontrei%20seu%20perfil%20e%20gostaria%20de%20conhecer%20melhor%20os%20procedimentos%20e%20tratamentos%20oferecidos.%20Poderia%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F"
+            target="_blank"
+            rel="noopener">
+            Chamar no WhatsApp
+          </a>
+
+          <!-- Instagram -->
+          <a class="link-btn"
+            href="https://www.instagram.com/dr.thiagomachadosc/"
+            target="_blank"
+            rel="noopener">
+            Instagram profissional
+          </a>
+
+        </section>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Navegação -->
+  <nav class="ui">
+
+    <section class="barra">
+
+      <!-- Início -->
+      <button class="tag t1" data-go="hero" aria-label="início">
+
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+
+          <path d="M4 11 L12 4 L20 11 V20 H14 V14 H10 V20 H4 Z" />
+
+        </svg>
+
+        <span>início</span>
+
+      </button>
+
+      <!-- Procedimentos -->
+      <button class="tag t2" data-go="servicos"
+        aria-label="procedimentos">
+
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+
+          <path d="M4 6h16M4 12h16M4 18h10" />
+
+        </svg>
+
+        <span>procedimentos</span>
+
+      </button>
+
+      <!-- Contato -->
+      <button class="tag t3" data-go="contato"
+        aria-label="contato">
+
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+
+          <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z" />
+
+        </svg>
+
+        <span>contato</span>
+
+      </button>
+
+      <!-- Instagram -->
+      <a class="tag t4"
+        href="https://www.instagram.com/dr.thiagomachadosc/"
+        target="_blank"
+        rel="noopener"
+        aria-label="instagram">
+
+        <svg viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+          aria-hidden="true">
+
+          <rect x="4" y="4" width="16" height="16" rx="5" />
+          <circle cx="12" cy="12" r="3.5" />
+          <circle cx="17" cy="7" r=".6" />
+
+        </svg>
+
+        <span>instagram</span>
+
+      </a>
+
+    </section>
+
+    <!-- Rodapé -->
+    <p class="rodape">
+      Biomédico Esteta · CRBM 15786 · Criciúma - SC
+    </p>
+
+  </nav>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
 </body>
 </html>
