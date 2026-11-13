@@ -36,6 +36,12 @@ html, body {
   overflow: hidden;
 }
 
+/* Reset de margem: <figure>, <section>, <article>, <nav> e <main> têm margem padrão
+   no navegador (40px nos lados). Isso empurrava a foto para o lado. */
+main, nav, section, article, figure {
+  margin: 0;
+}
+
 /* 3) NOME GRANDE ATRÁS DA FIGURA */
 .wm {
   position: absolute;
